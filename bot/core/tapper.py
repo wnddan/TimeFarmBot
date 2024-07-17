@@ -116,9 +116,9 @@ class Tapper:
                         await asyncio.sleep(delay=60)
                         continue
                 info = await get_info(http_client=http_client)
-                task_list=await self.get_task_list(http_client=http_client)
-                if len(task_list)>1:
-                    await self.submit_claim(task_list=task_list,http_client=http_client)
+                # task_list=await self.get_task_list(http_client=http_client)
+                # if len(task_list)>1:
+                #     await self.submit_claim(task_list=task_list,http_client=http_client)
                 if info.get("activeFarmingStartedAt") is None:
                     f_info = await start_farm(http_client=http_client)
                     sleep_time= f_info.get("farmingDurationInSec")
