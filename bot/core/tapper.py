@@ -35,7 +35,7 @@ class Tapper:
         for i in response_json:
             # if 'submission' not in i:
             task_list.append(i['id'])
-        logger.info(task_list)
+
         return task_list
     async def submit_claim(self,http_client: aiohttp.ClientSession,task_list :list ) -> None:
         if '668fbec8647177930d0ac0bc' in task_list:
@@ -47,12 +47,11 @@ class Tapper:
             claim_url2 = f'https://tg-bot-tap.laborx.io/api/v1/tasks/{i}/claims'
             res = await http_client.post(url=sub_url,json={})
             text=res.text()
-            logger.info(text)
+
             # if "OK" in text or res.status ==400:
             response2_json =  await http_client.post(
                 url=claim_url2,
                 json={})
-            logger.info(response2_json.text())
         return None   
     async def run(self, proxy: str | None) -> None:
         token = ""
