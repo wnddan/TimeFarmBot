@@ -87,10 +87,10 @@ class Tapper:
                 proxy=proxy,
                 session_name=self.session_name,
                 )
-                    http_client = aiohttp.ClientSession(
+                http_client = aiohttp.ClientSession(
                         headers=headers, connector=proxy_conn
                     )
-                    http_client.headers[
+                http_client.headers[
                         'Authorization'
                     ] = f'Bearer {token}'
 
@@ -172,4 +172,3 @@ async def run_tapper(tg_client: Client, proxy: str | None):
         await Tapper(tg_client=tg_client).run(proxy=proxy)
     except InvalidSession:
         logger.error(f'{tg_client.name} | Invalid Session')
-
