@@ -70,11 +70,7 @@ class Tapper:
                 session_name=self.session_name,
             )
 
-        tg_web_data = await get_tg_web_data(
-            tg_client=self.tg_client,
-            proxy=proxy,
-            session_name=self.session_name,
-        )
+
 
         while True:
             try:
@@ -86,7 +82,11 @@ class Tapper:
                     proxy_conn = (
                         ProxyConnector().from_url(proxy) if proxy else None
                     )
-
+                tg_web_data = await get_tg_web_data(
+                tg_client=self.tg_client,
+                proxy=proxy,
+                session_name=self.session_name,
+                )
                     http_client = aiohttp.ClientSession(
                         headers=headers, connector=proxy_conn
                     )
